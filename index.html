@@ -27,7 +27,10 @@
     <section class="stage">
       <div class="screen" id="screen">
         <canvas id="out" width="960" height="540"></canvas>
-        <div class="hud" id="hud"><span id="hudFilter">Normal</span></div>
+        <div class="hud" id="hud">
+          <div class="hl"><span id="hudFilter">Filter: Normal</span><span id="hudZoom">Zoom: 1.0x</span></div>
+          <div class="hr"><span id="hudGesture">Gesture: none</span><span id="hudFaces">Faces: 0</span></div>
+        </div>
         <div class="gtoast hidden" id="gtoast"></div>
         <div class="rec hidden" id="recDot"><i></i>REC <span id="recTime">00:00</span></div>
         <div class="start" id="startBox">
@@ -39,19 +42,34 @@
         </div>
       </div>
       <div class="bar">
+        <button class="btn" id="stopBtn" disabled>⏹ Stop camera</button>
         <button class="btn" id="prevBtn" disabled>‹ Prev</button>
         <button class="btn" id="nextBtn" disabled>Next ›</button>
         <button class="btn" id="clearBtn" disabled>Clear</button>
+        <button class="btn" id="zoomOut" disabled>🔍 −</button>
+        <button class="btn" id="zoomIn" disabled>🔍 +</button>
         <span class="sp"></span>
+        <button class="btn" id="galBtn" disabled>🖼 Filter gallery</button>
         <button class="btn" id="shotBtn" disabled>📸 Screenshot</button>
         <button class="btn" id="recBtn" disabled>⏺ Record</button>
       </div>
-    </section>
+      </section>
 
     <aside class="side">
+      <div class="two">
+        <div class="card mini"><small class="eyebrow">CURRENT FILTER</small><div class="big" id="curFilter">Normal</div></div>
+        <div class="card mini"><small class="eyebrow">DETECTED GESTURE</small><div class="big"><span id="gestIcon">❔</span> <span id="gestName">none</span></div></div>
+      </div>
       <div class="card">
         <small class="eyebrow">FILTERS</small>
         <div class="filters" id="filters"></div>
+      </div>
+      <div class="card">
+        <small class="eyebrow">BACKGROUND (BLUR / REPLACE)</small>
+        <div class="seg" id="bgSeg"></div>
+        <label class="up"><input type="file" id="bgFile" accept="image/*" hidden /><span class="btn small">🖼 Upload your own background</span></label>
+        <label class="chk"><input type="checkbox" id="faceBox" checked /> Show face boxes (multiple faces)</label>
+        <p class="note" id="bgNote">Pick the <b>Background</b> filter, then choose Blur or a replacement.</p>
       </div>
       <div class="card">
         <small class="eyebrow">GESTURES</small>
@@ -75,6 +93,10 @@
   </main>
   <footer class="foot">Web port of my Python + OpenCV + MediaPipe desktop project. Hand &amp; face models load from a CDN on first use.</footer>
 </div>
+<div class="modal hidden" id="gallery"><div class="modal-box">
+  <div class="modal-head"><b>Filter gallery</b><button class="btn small" id="galClose">✕ Close</button></div>
+  <div class="gal-grid" id="galGrid"></div>
+</div></div>
 <video id="cam" playsinline muted class="hidden"></video>
 <script src="app.js" type="module"></script>
 </body>
