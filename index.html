@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gesture Smart Camera – AI Filters in your Browser</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2716%27 fill=%27%237c5cff%27/%3E%3Ccircle cx=%2732%27 cy=%2734%27 r=%2714%27 fill=%27none%27 stroke=%27white%27 stroke-width=%276%27/%3E%3Ccircle cx=%2732%27 cy=%2734%27 r=%275%27 fill=%27white%27/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="bg"></div>
+<div class="shell">
+  <header class="top">
+    <div class="brand"><span class="logo"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="5"/><path d="M4 8h3l2-3h6l2 3h3v12H4z"/></svg></span>
+      <div><b>Gesture Smart Camera</b><small>AI FILTERS · RUNS IN YOUR BROWSER</small></div></div>
+    <div class="chips">
+      <span class="chip" id="chipHand"><i></i>Hand tracking</span>
+      <span class="chip" id="chipFace"><i></i>Face tracking</span>
+      <span class="chip" id="chipSeg"><i></i>Background AI</span>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="stage">
+      <div class="screen" id="screen">
+        <canvas id="out" width="960" height="540"></canvas>
+        <div class="hud" id="hud"><span id="hudFilter">Normal</span></div>
+        <div class="gtoast hidden" id="gtoast"></div>
+        <div class="rec hidden" id="recDot"><i></i>REC <span id="recTime">00:00</span></div>
+        <div class="start" id="startBox">
+          <div class="start-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="5"/><path d="M4 8h3l2-3h6l2 3h3v12H4z"/></svg></div>
+          <h1>Control filters with your hand.</h1>
+          <p>Pinch, swipe, show a peace sign or a fist. Your camera video is processed <b>only inside your browser</b>. Nothing is uploaded.</p>
+          <button id="startBtn" class="btn primary">Start camera</button>
+          <p id="startMsg" class="msg"></p>
+        </div>
+      </div>
+      <div class="bar">
+        <button class="btn" id="prevBtn" disabled>‹ Prev</button>
+        <button class="btn" id="nextBtn" disabled>Next ›</button>
+        <button class="btn" id="clearBtn" disabled>Clear</button>
+        <span class="sp"></span>
+        <button class="btn" id="shotBtn" disabled>📸 Screenshot</button>
+        <button class="btn" id="recBtn" disabled>⏺ Record</button>
+      </div>
+    </section>
+
+    <aside class="side">
+      <div class="card">
+        <small class="eyebrow">FILTERS</small>
+        <div class="filters" id="filters"></div>
+      </div>
+      <div class="card">
+        <small class="eyebrow">GESTURES</small>
+        <table class="gt">
+          <tr><td>🤏 Pinch</td><td>Next filter</td></tr>
+          <tr><td>👋 Swipe right / left</td><td>Next / previous</td></tr>
+          <tr><td>🖐 Open palm (hold)</td><td>Clear filter</td></tr>
+          <tr><td>✊ Fist (hold)</td><td>Screenshot</td></tr>
+          <tr><td>✌ Peace (hold)</td><td>Start / stop recording</td></tr>
+          <tr><td>👍 Thumbs up (hold)</td><td>Change background</td></tr>
+          <tr><td>🫶 Heart (two hands)</td><td>Hearts burst</td></tr>
+          <tr><td>🤏🤏 Both hands pinch</td><td>Zoom in / out</td></tr>
+        </table>
+        <p class="note">Keys: <kbd>N</kbd> next · <kbd>P</kbd> previous · <kbd>C</kbd> clear · <kbd>S</kbd> screenshot · <kbd>R</kbd> record</p>
+      </div>
+      <div class="card tech">
+        <small class="eyebrow">BUILT WITH</small>
+        <p>HTML · CSS · JavaScript · MediaPipe (hand, face, segmentation) · Canvas API · MediaRecorder</p>
+      </div>
+    </aside>
+  </main>
+  <footer class="foot">Web port of my Python + OpenCV + MediaPipe desktop project. Hand &amp; face models load from a CDN on first use.</footer>
+</div>
+<video id="cam" playsinline muted class="hidden"></video>
+<script src="app.js" type="module"></script>
+</body>
+</html>
