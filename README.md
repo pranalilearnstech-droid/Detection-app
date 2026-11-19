@@ -1,5 +1,5 @@
 # Gesture Smart Camera (Web)
-
+🔗 **Live Demo:** [https://camera-ruddy-eta.vercel.app](https://camera-ruddy-eta.vercel.app)
 Browser version of my Python + OpenCV + MediaPipe gesture camera. Runs fully in the browser (no server, no upload).
 
 - 12 filters: Dog, Cat, Sunglasses, Hearts, Snow, Fire, Neon, Rainbow, Vintage, B&W, Cartoon, Background (blur / colour)
